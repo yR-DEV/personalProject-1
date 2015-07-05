@@ -120,7 +120,7 @@ function Drawable() {
 function Background() {
   //redefine the speed of the background because it is going to move.
   //this declaration/redefinition overwrites the0 set in the drawable object
-  this.speed = 1;
+  this.speed = 2;
 
   //calling on and implementing the abstract draw function declared at the end
   //of the drawable object
@@ -157,7 +157,7 @@ function Ammo(object) {
   this.spawn = function(x, y, lockSpeed) {
     this.x = x;
     this.y = y;
-    this.speed = lockSpeed;
+    this.speed = lockSpeed + 1;
     this.alive = true;
   };
      //Now for dirty rectangles, the canvas is basically drawing each bullet again
@@ -452,7 +452,7 @@ function Biker() {
   this.uLockPool = new ThePools(30);
   this.uLockPool.init("uLock");
   //setting the firing rate and the counter of bullets
-  var throwingRate = 15;
+  var throwingRate = 20;
   var counter = 0;
 	//collision setting
 	this.collidesWith = "enemyAmmo";
@@ -580,7 +580,7 @@ function Enemy1() {
   };
 
 	this.throw = function() {
-		game.enemyAmmoArrPool.get(this.x + this.width / 2,this.y + this.height, -2.5)
+		game.enemyAmmoArrPool.get(this.x + this.width / 2,this.y + this.height, -3.5)
 	};
 
 	//resetting enemie values, have to reset when I call on draw and move and spawn

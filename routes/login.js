@@ -30,7 +30,7 @@ router.post('/login/account', function (req, res, next) {
       console.log(login);
       res.render('login/account', {userName: userName, passWord: login.passWord, theErrorArr: []});
     } else {
-      res.render('login/', {errorMessage: "Your Account Information Was Not Found! Sorry :(", theErrorArr: []});
+      res.render('login/', {errorMessage: "Your Account Information Was Not Found! Sorry :(", theErrorArr: [], userName: userName, passWord: login.passWord});
     }
   });
 

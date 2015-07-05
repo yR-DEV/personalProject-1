@@ -78,3 +78,17 @@ span .level {
   font-family: Helvetica;
   font-size: 40px;
 }
+
+.userName {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.greeting {
+  font-size: 55px;
+  font-weight: bolder;
+}
+
+.gameLink {
+  font-size: 35px;
+}
