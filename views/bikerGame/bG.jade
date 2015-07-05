@@ -1,0 +1,20 @@
+extend ../layout
+
+block content
+
+  canvas#backgroundCanvas(height='600', width='800') If the game doesnt load you need to try a different browser    
+  canvas#mainCanvas(height='600', width='800') 
+  canvas#bikeCanvas(height='600', width='800')  
+  div#score-and-level
+    div.score YER SCORE:  
+      span#score   
+    div.level YER CLEARD WAVVES:  
+      span#level  
+  #yew-luze.yew-luze YEW LUZE :(
+    br
+    span(onclick='game.restart()') U WANT TRY AGAIN? CLICK!   
+  script(src='/javascripts/bG.js', type='text/javascript')
+
+
+  div.logout
+    a(href="../login") Logout 
