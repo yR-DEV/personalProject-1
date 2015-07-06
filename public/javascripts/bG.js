@@ -530,8 +530,10 @@ function Enemy1() {
 	this.type = "enemy1";
 
 	this.spawn = function(x, y, theSpeed) {
+		console.log(this.x);
 		this.x = x;
 		this.y = y;
+		console.log(this.y);
 		this.speed = theSpeed;
 		this.speedX = 0;
 		this.speedY = theSpeed;
