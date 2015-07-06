@@ -208,7 +208,7 @@ function FourSquare(boxBoundry, lvl) {
 		height: 0,
 	};
 	var objectArr = [];
-	this.nodeArr = [];	
+	this.nodeArr = [];
 	var level = lvl || 0;
 	var totalLevels = 5;
 
