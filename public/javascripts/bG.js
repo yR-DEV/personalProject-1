@@ -557,7 +557,7 @@ function Enemy1() {
 			this.speed = 2.0;
 			this.speedY = 0;
 			this.y -= 5;
-			this.speedX = -this.speed
+			this.speedX = -this.speed;
 		}
 
 		if(!this.collidingBool) {
