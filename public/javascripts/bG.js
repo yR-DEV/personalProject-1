@@ -536,6 +536,7 @@ function Enemy1() {
 		this.speedX = 0;
 		this.speedY = theSpeed;
 		this.alive = true;
+		this.theLevel = 0;
 		this.leftEdgeDim = this.x - 90;
 		this.rightEdgeDim = this.x + 90;
 		this.bottomEdgeDim = this.y + 140;
