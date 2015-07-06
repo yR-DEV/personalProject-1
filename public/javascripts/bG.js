@@ -208,7 +208,7 @@ function FourSquare(boxBoundry, lvl) {
 		height: 0,
 	};
 	var objectArr = [];
-	this.nodeArr = [];
+	this.nodeArr = [];	
 	var level = lvl || 0;
 	var totalLevels = 5;
 
@@ -697,14 +697,13 @@ function Game() {
 
 	this.restart = function() {
 		document.getElementById('yew-luze').style.display = "none";
-
+		document.getElementById('score-and-level').style.display = "none";
 		location.reload();
 		this.start();
 	}
 
 	this.gameOver = function() {
 		document.getElementById('yew-luze').style.display = "block";
-		document.getElementById('score-and-level').style.display = "none";
 	};
 }
 
