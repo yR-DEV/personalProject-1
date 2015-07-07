@@ -54,9 +54,7 @@ router.post('/login', function (req, res, next) {
                       passWord: desiredPassWord1});
       res.redirect('login/');
     }
-
   });
-
 });
 
 module.exports = router;

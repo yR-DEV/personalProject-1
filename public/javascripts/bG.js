@@ -120,7 +120,7 @@ function Drawable() {
 function Background() {
   //redefine the speed of the background because it is going to move.
   //this declaration/redefinition overwrites the0 set in the drawable object
-  this.speed = 2;
+  this.speed = 3;
 
   //calling on and implementing the abstract draw function declared at the end
   //of the drawable object
@@ -199,6 +199,11 @@ function Ammo(object) {
 // //unless they are overwritten
 Ammo.prototype = new Drawable();
 
+
+//this is an intergral part of the colision detection ALGORITHM
+//it takes the canvas and divides it into four squares, this is normally called
+//aquad tree, but it keeps track of the X and Y of objects in whichever quarter
+//in order to perform collision check at a much faster rate/
 function FourSquare(boxBoundry, lvl) {
 	var maxObjNum = 10;
 	this.bounds = boxBoundry || {
@@ -239,6 +244,9 @@ function FourSquare(boxBoundry, lvl) {
 	};
 
 	//returning all the objects that the that can collide with obj
+	//this locates all the objects on the canvas (main canvas) and returns them in a new array
+	//for all key value pairs that contain more than one object, the self calling of the funciton lists them all out neatly
+
 	this.findTheObjects = function(objectsReturned, object) {
 		if(typeof object === "undefined") {
 			console.log("undefined object...");
@@ -282,11 +290,11 @@ function FourSquare(boxBoundry, lvl) {
 			if(this.nodeArr[0] == null) {
 				this.split();
 			}
-			var x = 0
+			var x = 0;
 			while(x < objectArr.length) {
 				var theIndex = this.getTheIndex(objectArr[x]);
 				if(theIndex != -1) {
-					this.nodeArr[theIndex].insert((objectArr.splice(i, 1))[0])
+					this.nodeArr[theIndex].insert((objectArr.splice(i, 1))[0]);
 				} else {
 					x++;
 				}
@@ -294,6 +302,9 @@ function FourSquare(boxBoundry, lvl) {
 		}
 	};
 	//function to check which node the object is in
+	//this function checks which quadrant the object is in.
+	//if any of the quadrants become filled, it splits into 4 morequadrants
+	//to more easily keep track of the objects located within them.
 	this.getTheIndex = function(object) {
 		var theIndex = -1;
 		var vMid = this.bounds.x + this.bounds.width / 2;
@@ -430,6 +441,9 @@ function ThePools(maxLength) {
   this.animate = function() {
     //in this for loop we will be checking the array
     //and only drawing a bullet that is !alive
+		//when a bullet goes off the screen, alive will be set ot false
+		//and the position in the array is popped off and sent to the back, ready to be redarwn on the canvas again
+
     for(var i = 0; i < arraySize; i++) {
       if(arrayPool[i].alive) {
         if(arrayPool[i].draw()) {
@@ -597,8 +611,8 @@ function Enemy1() {
 		this.collidingBool = false;
 	}
 }
-
 Enemy1.prototype = new Drawable();
+// Enemy1.prototype = new Drawable();
 
 //creating the main game object.
 //It will contain all the data, objects, images, and whatnot
@@ -635,7 +649,7 @@ function Game() {
       this.background = new Background();
       this.background.init(0, 0);  //draw point is at x = 0 and y = 0;
       //need to initialize the Biker and enemy Objects now
-			var enemySpeed = 2;
+			var enemySpeed = 3;
       this.biker = new Biker();
 			this.playerScore = 0;
 			this.playerLevel = 1;
@@ -698,18 +712,26 @@ function Game() {
     animate();
   };
 
+	//this is the restart function, whenever the user clicks on the div element that
+	//restarts the game, onclick runs here, in jade HTML you can see that it calls on this specific functino
+	//originally I had the score and waves cleared go away when the player collided with an enemy bullet
+	//but it made more sense to continue to show it
 	this.restart = function() {
 		document.getElementById('yew-luze').style.display = "none";
 		document.getElementById('score-and-level').style.display = "none";
 		location.reload();
 		this.start();
 	}
-
+	//game over function that gets called when the player connects with enemy Ammo
+	//originally this held the setting the div element with the score and whatnot display to none
+	//but I moved it
 	this.gameOver = function() {
 		document.getElementById('yew-luze').style.display = "block";
 	};
 }
-
+//When I end up adding sound to the game this is where I am going to do it
+//I can check the ready stateof all the sound files, and prevent the game from running
+//when they are not loaded
 function checkGameReadyState(){
 	if(game.checkState === 1) {
 		window.clearInterval(game.checkState);
@@ -733,6 +755,10 @@ function animate() {
 	game.fourSquare.insert(game.biker.uLockPool.getThePool());
 	game.fourSquare.insert(game.enemySpawnPool.getThePool());
 	game.fourSquare.insert(game.enemyAmmoArrPool.getThePool());
+
+//running the collision detection function each time that an object on the canvas is draw/redrawing
+//below it is a conditional that checks if there are any enemies left on the staghe
+//if there are none, it calls on theenemyspawnawve function which puts a new set of enemies on the canvas\
 
 	detectCollision();
 
@@ -760,6 +786,10 @@ function detectCollision() {
 		for (y = 0, length = obj.length; y < length; y++) {
 
 			// DETECT COLLISION ALGORITHM
+			//simultaneously checking the boundaries of an object on the canvas with another object
+			//all enemy bullets are checked against the players postiion
+			//while the player bullets are checked against the x and y of allt he
+			//enemies drawn on the canvas
 			if (objects[x].collidesWith === obj[y].type &&
 				(objects[x].x < obj[y].x + obj[y].width &&
 			     objects[x].x + objects[x].width > obj[y].x &&
