@@ -3,10 +3,8 @@ extend ../layout
 block content
 
   h1= title
-  p HELLO
-  p= userName.userName
+  p.greeting HELLO
+  p.userName= userName
   
-  a(href="/bG") Play the Game!!!
+  a.gameLink(href="/bG") Play the Game!!!
   
-  form(action="/login/account", method="post", name="newListForm")
-    input(type="submit", name="newUserListButton", value="New Form!")
