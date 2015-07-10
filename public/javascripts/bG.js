@@ -406,6 +406,7 @@ function ThePools(maxLength) {
 			}
 			//I may be able to make enemies move accross the screen here, just have to mess with the
 			//child instances of enemy...
+			//ENEMIES LOL
 		} else if(object == "enemy1") {
 			for(var i = 0; i < arraySize; i++) {
 				var enemy1 = new Enemy1();
@@ -431,8 +432,8 @@ function ThePools(maxLength) {
       arrayPool.unshift(arrayPool.pop());
     }
   };
-	//shifting around the ulock array in order to get an unused 
-  this.uLockGet = function(x, y, speed) {
+	//shifting around the ulock array in order to get an unused
+	this.uLockGet = function(x, y, speed) {
     if(!arrayPool[arraySize - 1].alive) {
         this.get(x, y, speed);
        }
@@ -831,6 +832,7 @@ document.onkeydown = function(key) {
   var keyCode = (key.keyCode) ? key.keyCode: key.charCode;
   if(KEY_CODES[keyCode]){
     key.preventDefault();
+		console.log(keyCode);
     //turning the status of the keystatus object to true, indicating that a button
     //was pressed by the user
     KEY_STATUS[KEY_CODES[keyCode]] = true;
