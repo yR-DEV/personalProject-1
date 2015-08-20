@@ -2,13 +2,24 @@ extends layout
 
 block content
   //- h1= title
-  //- p Welcome to #{title}
-  //- 
-  //- p
-  //- p Please Login to play the game
-  //- a(href="/login/") here.
-  //- p Or
-  //- p Please Create A New Account 
-  //- a(href="/login/newAccount") Here
-  p Play the game
-  a(href="/bG") Here
+  script(src="/javascripts/bG.js", "type='text/javascript")
+  canvas#backgroundCanvas(height='600', width='800') If the game doesnt load you need to try a different browser    
+  canvas#mainCanvas(height='600', width='800') 
+  canvas#bikeCanvas(height='600', width='800')  
+  div#score-and-level
+    div.score Score:  
+      span#score   
+    div.level Current Wave:  
+      span#level  
+  #yew-luze.yew-luze Game Over
+    br
+    span(onclick='game.restart()') CLICK HERE to restart the game!  
+
+  div.logout
+    a(href="../login") Logout 
+  div.directions
+    p USE ARROW KEYS TO MOVE
+    br
+    p PRESS SPACEBAR TO SHOOT!
+    p glhf
+    
