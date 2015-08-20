@@ -92,3 +92,9 @@ span .level {
 .gameLink {
   font-size: 35px;
 }
+
+div.directions {
+  margin-left: 60%;
+  font-size: 18px;
+  color: maroon;
+}
