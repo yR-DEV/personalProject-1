@@ -1,7 +1,7 @@
 extend ../layout
 
 block content
-
+  script(src='/javascripts/bG.js', type='text/javascript')
   canvas#backgroundCanvas(height='600', width='800') If the game doesnt load you need to try a different browser    
   canvas#mainCanvas(height='600', width='800') 
   canvas#bikeCanvas(height='600', width='800')  
@@ -13,7 +13,6 @@ block content
   #yew-luze.yew-luze Game Over
     br
     span(onclick='game.restart()') CLICK HERE to restart the game!  
-  script(src='/javascripts/bG.js', type='text/javascript')
 
   div.logout
     a(href="../login") Logout 
